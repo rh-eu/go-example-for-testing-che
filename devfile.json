@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "name": "golang-example"
+    "name": "go-server-react-client"
   },
   "projects": [
     {
@@ -14,6 +14,24 @@
     }
   ],
   "components": [
+    {
+      "id": "che-incubator/typescript/latest",
+      "memoryLimit": "512Mi",
+      "type": "chePlugin"
+    },
+    {
+      "mountSources": true,
+      "endpoints": [
+        {
+          "name": "nodejs",
+          "port": 4100
+        }
+      ],
+      "memoryLimit": "512Mi",
+      "type": "dockerimage",
+      "image": "quay.io/eclipse/che-nodejs8-centos:7.18.0",
+      "alias": "nodejs"
+    },
     {
       "id": "eclipse/che-theia/next",
       "memoryLimit": "1Gi",
@@ -62,7 +80,7 @@
   "apiVersion": "1.0.0",
   "commands": [
     {
-      "name": "git name",
+      "name": "go git name",
       "actions": [
         {
           "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che",
@@ -73,13 +91,57 @@
       ]
     },
     {
-      "name": "git email",
+      "name": "go git email",
       "actions": [
         {
           "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che",
           "type": "exec",
           "command": "git config --local user.email rh@mifomm.eu",
           "component": "go-cli"
+        }
+      ]
+    },
+    {
+      "name": "nodejs git name",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che",
+          "type": "exec",
+          "command": "git config --local user.name \"Rainer Helmes\"",
+          "component": "nodejs"
+        }
+      ]
+    },
+    {
+      "name": "nodejs git email",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che",
+          "type": "exec",
+          "command": "git config --local user.email rh@mifomm.eu",
+          "component": "nodejs"
+        }
+      ]
+    },
+    {
+      "name": "install all required dependencies",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/react-redux-realworld-example-app",
+          "type": "exec",
+          "command": "npm install",
+          "component": "nodejs"
+        }
+      ]
+    },
+    {
+      "name": "start the local server",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/react-redux-realworld-example-app",
+          "type": "exec",
+          "command": "npm start",
+          "component": "nodejs"
         }
       ]
     }
