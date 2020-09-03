@@ -1,0 +1,86 @@
+{
+  "metadata": {
+    "name": "golang-example"
+  },
+  "projects": [
+    {
+      "name": "golang-example-for-testing-che",
+      "source": {
+        "location": "https://github.com/rh-eu/golang-example-for-testing-che.git",
+        "type": "git",
+        "branch": "master"
+      }
+    }
+  ],
+  "components": [
+    {
+      "id": "eclipse/che-theia/next",
+      "memoryLimit": "1Gi",
+      "type": "cheEditor"
+    },
+    {
+      "id": "golang/go/latest",
+      "memoryLimit": "512Mi",
+      "preferences": {
+        "go.lintTool": "golangci-lint",
+        "go.useLanguageServer": true
+      },
+      "type": "chePlugin",
+      "alias": "go-plugin",
+      "env": [
+        {
+          "value": "off",
+          "name": "GO111MODULE"
+        }
+      ]
+    },
+    {
+      "mountSources": true,
+      "endpoints": [
+        {
+          "name": "8080-tcp",
+          "port": 8080
+        }
+      ],
+      "memoryLimit": "2Gi",
+      "type": "dockerimage",
+      "image": "quay.io/eclipse/che-golang-1.14:7.18.0",
+      "alias": "go-cli",
+      "env": [
+        {
+          "value": "$(CHE_PROJECTS_ROOT)",
+          "name": "GOPATH"
+        },
+        {
+          "value": "/tmp/.cache",
+          "name": "GOCACHE"
+        }
+      ]
+    }
+  ],
+  "apiVersion": "1.0.0",
+  "commands": [
+    {
+      "name": "git name",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/golang-example-for-testing-che",
+          "type": "exec",
+          "command": "git config --local user.name \"Rainer Helmes\"",
+          "component": "go-cli"
+        }
+      ]
+    },
+    {
+      "name": "git email",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/golang-example-for-testing-che",
+          "type": "exec",
+          "command": "git config --local user.email rh@mifomm.eu",
+          "component": "go-cli"
+        }
+      ]
+    }
+  ]
+}
