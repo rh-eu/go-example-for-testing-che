@@ -9,7 +9,8 @@
         "location": "https://github.com/rh-eu/golang-example-for-testing-che.git",
         "type": "git",
         "branch": "master"
-      }
+      },
+      "clonePath": "src/github.com/rh-eu/golang-example-for-testing-che"
     }
   ],
   "components": [
@@ -64,7 +65,7 @@
       "name": "git name",
       "actions": [
         {
-          "workdir": "${CHE_PROJECTS_ROOT}/golang-example-for-testing-che",
+          "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che",
           "type": "exec",
           "command": "git config --local user.name \"Rainer Helmes\"",
           "component": "go-cli"
@@ -75,7 +76,7 @@
       "name": "git email",
       "actions": [
         {
-          "workdir": "${CHE_PROJECTS_ROOT}/golang-example-for-testing-che",
+          "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che",
           "type": "exec",
           "command": "git config --local user.email rh@mifomm.eu",
           "component": "go-cli"
