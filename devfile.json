@@ -124,10 +124,10 @@
       ]
     },
     {
-      "name": "install all required dependencies",
+      "name": "npm install all required dependencies",
       "actions": [
         {
-          "workdir": "${CHE_PROJECTS_ROOT}/react-redux-realworld-example-app",
+          "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che/client",
           "type": "exec",
           "command": "npm install",
           "component": "nodejs"
@@ -135,10 +135,21 @@
       ]
     },
     {
-      "name": "start the local server",
+      "name": "npm build",
       "actions": [
         {
-          "workdir": "${CHE_PROJECTS_ROOT}/react-redux-realworld-example-app",
+          "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che/client",
+          "type": "exec",
+          "command": "npm run build",
+          "component": "nodejs"
+        }
+      ]
+    },
+    {
+      "name": "npm start dev server",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che/client",
           "type": "exec",
           "command": "npm start",
           "component": "nodejs"
