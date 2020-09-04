@@ -1,4 +1,4 @@
-module github.com/rh-eu/golang-example-for-testing-che/hello
+module github.com/rh-eu/golang-example-for-testing-che
 
 go 1.14
 

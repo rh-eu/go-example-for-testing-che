@@ -41,8 +41,8 @@
       "id": "golang/go/latest",
       "memoryLimit": "512Mi",
       "preferences": {
-        "go.lintTool": "golangci-lint",
-        "go.useLanguageServer": true
+        "go.useLanguageServer": true,
+        "go.lintTool": "golangci-lint"
       },
       "type": "chePlugin",
       "alias": "go-plugin",
@@ -80,7 +80,18 @@
   "apiVersion": "1.0.0",
   "commands": [
     {
-      "name": "go git name",
+      "name": "go run application",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che",
+          "type": "exec",
+          "command": "go run cmd/goservd/main.go",
+          "component": "go-cli"
+        }
+      ]
+    },
+    {
+      "name": "go-cli git name",
       "actions": [
         {
           "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che",
@@ -91,7 +102,7 @@
       ]
     },
     {
-      "name": "go git email",
+      "name": "go-cli git email",
       "actions": [
         {
           "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che",
