@@ -91,6 +91,17 @@
       ]
     },
     {
+      "name": "go generate assets",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/src/github.com/rh-eu/golang-example-for-testing-che",
+          "type": "exec",
+          "command": "go generate -tags=dev ./pkg/...",
+          "component": "go-cli"
+        }
+      ]
+    },
+    {
       "name": "go-cli git name",
       "actions": [
         {
