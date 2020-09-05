@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
+
 
 class App extends Component {
-  constructor() {
-    super();
-
-}
 
   render() {
+
     return (
-        <h1>My App is up and running</h1>
+
+        <div>
+
+          <h1>Data exposed by the Server:</h1>
+          <p>------</p>
+          <h2>{this.props.serverdata.hostname}</h2>
+          <div>Demo application version <i>{this.props.serverdata.version}</i></div>
+
+        </div>    
     );
   }
 }
