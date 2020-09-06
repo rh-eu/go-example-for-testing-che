@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Mem from "./Mem";
 
 
 class App extends Component {
@@ -11,10 +12,17 @@ class App extends Component {
 
           <h1>Data exposed by the Server:</h1>
           <p>------</p>
-          <h2>{this.props.serverdata.hostname}</h2>
-          <div>Demo application version <i>{this.props.serverdata.version}</i></div>
 
-        </div>    
+          <p>{ this.props.hostname }</p>
+          <p>.....</p>
+          <p>{ this.props.addrs }</p>
+          <p>.....</p>          
+          <p>{ this.props.requestDump }</p>
+
+          <Mem /> 
+
+        </div>
+
     );
   }
 }

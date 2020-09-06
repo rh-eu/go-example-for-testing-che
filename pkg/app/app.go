@@ -14,6 +14,7 @@ import (
 	"github.com/rh-eu/golang-example-for-testing-che/pkg/htmlutils"
 	"github.com/rh-eu/golang-example-for-testing-che/pkg/sitedata"
 	"github.com/rh-eu/golang-example-for-testing-che/pkg/version"
+	"github.com/rh-eu/golang-example-for-testing-che/pkg/memory"
 )
 
 type serverData struct {
@@ -30,6 +31,8 @@ type serverData struct {
 type App struct {
 	r *httprouter.Router
 	tg *htmlutils.TemplateGroup
+
+	m *memory.MemoryAPI
 }
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -101,6 +104,7 @@ func NewApp() *App {
 	}
 
 	router := k.r
+	k.m = memory.New()
 
 	router.GET("/favicon.ico", faviconHandler)
 
@@ -109,6 +113,8 @@ func NewApp() *App {
 
 	router.Handler("GET", "/static/*filepath", http.FileServer(sitedata.Assets))
 	router.Handler("GET", "/built/*filepath", http.FileServer(sitedata.Assets))
+
+	k.m.AddRoutes(router, "/memory")
 	
 	return k
 }

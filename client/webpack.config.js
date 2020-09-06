@@ -47,7 +47,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       "**": {
-        target: "https://serverpvo4j5tq-go-cli-server-8080.172.22.255.1.nip.io/",
+        target: "https://serverw5h56eos-go-cli-server-8080.172.22.255.1.nip.io/",
         secure: false,
         changeOrigin: true
       }      
