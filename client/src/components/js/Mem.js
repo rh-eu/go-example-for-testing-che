@@ -12,9 +12,10 @@ export default class Mem extends React.Component {
   }
 
   loadState() {
+    console.log("token: ", this.props.token)  
     fetch(this.props.apiPath, { method: 'GET',
       headers: {
-        'token': this.props.token,
+        'Token': this.props.token,
       }})
     .then(response => response.json())
     .then(response => this.setState(state => {
@@ -27,7 +28,7 @@ export default class Mem extends React.Component {
   }
 
   componentDidMount() {
-    this.loadState()
+    console.log("accessing memory API")  
     this.timer = setInterval(this.loadState.bind(this), 1000);
   }
 
@@ -77,6 +78,7 @@ export default class Mem extends React.Component {
 
     return (
       <div>
+        <h1>GET memory API</h1>  
         <table className="table table-condensed table-bordered">
           <thead>
             <tr>

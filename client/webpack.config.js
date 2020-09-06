@@ -1,5 +1,7 @@
 const webpack = require('webpack'); 
 
+const Dotenv = require('dotenv-webpack');
+
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 const path = require('path');
@@ -32,6 +34,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
+    new Dotenv(),  
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: "../sitedata/index.html",
@@ -47,7 +50,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       "**": {
-        target: "https://serverw5h56eos-go-cli-server-8080.172.22.255.1.nip.io/",
+        target: "https://servervth1twnl-go-cli-server-8080.172.22.255.1.nip.io/",
         secure: false,
         changeOrigin: true
       }      

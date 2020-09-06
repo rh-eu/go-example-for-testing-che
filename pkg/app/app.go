@@ -15,6 +15,7 @@ import (
 	"github.com/rh-eu/golang-example-for-testing-che/pkg/sitedata"
 	"github.com/rh-eu/golang-example-for-testing-che/pkg/version"
 	"github.com/rh-eu/golang-example-for-testing-che/pkg/memory"
+	"github.com/rh-eu/golang-example-for-testing-che/pkg/apitoken"
 )
 
 type serverData struct {
@@ -33,6 +34,7 @@ type App struct {
 	tg *htmlutils.TemplateGroup
 
 	m *memory.MemoryAPI
+	to *token.Token
 }
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -105,6 +107,7 @@ func NewApp() *App {
 
 	router := k.r
 	k.m = memory.New()
+	k.to = token.New()
 
 	router.GET("/favicon.ico", faviconHandler)
 
@@ -115,6 +118,7 @@ func NewApp() *App {
 	router.Handler("GET", "/built/*filepath", http.FileServer(sitedata.Assets))
 
 	k.m.AddRoutes(router, "/memory")
+	k.to.AddRoutes(router, "/api/token")
 	
 	return k
 }
