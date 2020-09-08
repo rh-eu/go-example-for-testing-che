@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  golang: 
+    container_name: goservd-debug
+    image: mifomm/goservd-debug
+    build: 
+      context: .
+      target: debug
+    ports:
+      - 8080:8080
+      - 2345:2345
+    security_opt:
+      - "seccomp:unconfined"
+      - "apparmor=unconfined"
+    cap_add:
+      - "SYS_PTRACE"  
